@@ -6,26 +6,41 @@ public class GradeCalculator {
 
     public static void main(String[] args) {
         
-//      This java program inputs your name and prints its length on the display screen.
+//      This java program inputs 5 subjects marks and print their grade
 
-//      required variables
-        String name;
-        int length;
-        
-//      initializing scanner object
+//      making scanner object
         Scanner input = new Scanner(System.in);
+               
+//      required variables
+        String[] subjects = {"Math", "Computer", "Science", "English", "Islamiat"};
         
-//      prompts user to input their name and assign it to a variable
-        System.out.print("Enter your name: ");
-        name = input.nextLine();
+//      assigning default value to prevent error(might not been initialized)
+        double total = 0, average = 0;
+        char grade = ' ';
         
-//      calculating length of name
-        length = name.length();
+        for (String subject: subjects){
+            System.out.print("Enter marks of " + subject + ": ");
+            double marks = input.nextDouble();
+            
+            if (marks >= 0 && marks <= 100 ){
+                total += marks;
+            } else{
+                System.out.println("Invalid number");
+                return;
+            }
+            
+        }
         
-//      display output
-        System.out.println("The length of your name is: " + length);
+        average = total * subjects.length;
         
-//      closing scanner object to prevent unexpected behaviour
-        input.close();
+        if (average >= 88){
+            grade = 'A';
+        } else if(average >= 70){
+            grade = 'B';
+        } else if(average < 70){
+            grade = 'C';
+        }
+        
+        System.out.println("You got " + grade + " Grade");
     }
 }
